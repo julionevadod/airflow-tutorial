@@ -1,0 +1,171 @@
+[2024-04-23T21:20:42.774+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-04-23T21:20:42.788+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dag_with_postgres_operator_v02.insert_into_table scheduled__2024-04-22T00:00:00+00:00 [queued]>
+[2024-04-23T21:20:42.792+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dag_with_postgres_operator_v02.insert_into_table scheduled__2024-04-22T00:00:00+00:00 [queued]>
+[2024-04-23T21:20:42.792+0000] {taskinstance.py:2303} INFO - Starting attempt 1 of 6
+[2024-04-23T21:20:42.798+0000] {taskinstance.py:2327} INFO - Executing <Task(PostgresOperator): insert_into_table> on 2024-04-22 00:00:00+00:00
+[2024-04-23T21:20:42.802+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'dag_with_postgres_operator_v02', 'insert_into_table', 'scheduled__2024-04-22T00:00:00+00:00', '--job-id', '419', '--raw', '--subdir', 'DAGS_FOLDER/dag_with_postgres_operator.py', '--cfg-path', '/tmp/tmp2oar3oc_']
+[2024-04-23T21:20:42.803+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=4588) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-04-23T21:20:42.803+0000] {standard_task_runner.py:91} INFO - Job 419: Subtask insert_into_table
+[2024-04-23T21:20:42.804+0000] {standard_task_runner.py:63} INFO - Started process 4590 to run task
+[2024-04-23T21:20:42.826+0000] {task_command.py:426} INFO - Running <TaskInstance: dag_with_postgres_operator_v02.insert_into_table scheduled__2024-04-22T00:00:00+00:00 [running]> on host e87e2f3305bd
+[2024-04-23T21:20:42.854+0000] {abstractoperator.py:725} ERROR - Exception rendering Jinja template for task 'insert_into_table', field 'sql'. Template: '\n            insert into dag_runs (dt, dag_id) values("{{dt}}","{{dag.dag_id}}")\n        '
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/abstractoperator.py", line 717, in _do_render_template_fields
+    rendered_content = self.render_template(
+                       ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/template/templater.py", line 169, in render_template
+    return self._render(template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/abstractoperator.py", line 675, in _render
+    return super()._render(template, context, dag=dag)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/template/templater.py", line 126, in _render
+    return render_template_to_string(template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/helpers.py", line 289, in render_template_to_string
+    return render_template(template, cast(MutableMapping[str, Any], context), native=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/helpers.py", line 284, in render_template
+    return "".join(nodes)
+           ^^^^^^^^^^^^^^
+  File "<template>", line 14, in root
+  File "/home/airflow/.local/lib/python3.12/site-packages/jinja2/runtime.py", line 852, in _fail_with_undefined_error
+    raise self._undefined_exception(self._undefined_message)
+jinja2.exceptions.UndefinedError: 'dt' is undefined
+[2024-04-23T21:20:42.857+0000] {taskinstance.py:2890} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 2476, in _run_raw_task
+    self._execute_task_with_callbacks(context, test_mode, session=session)
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 2629, in _execute_task_with_callbacks
+    task_orig = self.render_templates(context=context, jinja_env=jinja_env)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3079, in render_templates
+    original_task.render_template_fields(context, jinja_env)
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 1336, in render_template_fields
+    self._do_render_template_fields(self, self.template_fields, context, jinja_env, set())
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/abstractoperator.py", line 717, in _do_render_template_fields
+    rendered_content = self.render_template(
+                       ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/template/templater.py", line 169, in render_template
+    return self._render(template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/abstractoperator.py", line 675, in _render
+    return super()._render(template, context, dag=dag)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/template/templater.py", line 126, in _render
+    return render_template_to_string(template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/helpers.py", line 289, in render_template_to_string
+    return render_template(template, cast(MutableMapping[str, Any], context), native=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/helpers.py", line 284, in render_template
+    return "".join(nodes)
+           ^^^^^^^^^^^^^^
+  File "<template>", line 14, in root
+  File "/home/airflow/.local/lib/python3.12/site-packages/jinja2/runtime.py", line 852, in _fail_with_undefined_error
+    raise self._undefined_exception(self._undefined_message)
+jinja2.exceptions.UndefinedError: 'dt' is undefined
+[2024-04-23T21:20:42.861+0000] {taskinstance.py:1205} INFO - Marking task as UP_FOR_RETRY. dag_id=dag_with_postgres_operator_v02, task_id=insert_into_table, execution_date=20240422T000000, start_date=20240423T212042, end_date=20240423T212042
+[2024-04-23T21:20:42.866+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 419 for task insert_into_table ('dt' is undefined; 4590)
+[2024-04-23T21:20:42.903+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2024-04-23T21:20:42.911+0000] {taskinstance.py:3482} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-04-23T21:20:42.912+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2024-04-23T21:22:41.180+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-04-23T21:22:41.194+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dag_with_postgres_operator_v02.insert_into_table scheduled__2024-04-22T00:00:00+00:00 [queued]>
+[2024-04-23T21:22:41.197+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dag_with_postgres_operator_v02.insert_into_table scheduled__2024-04-22T00:00:00+00:00 [queued]>
+[2024-04-23T21:22:41.198+0000] {taskinstance.py:2303} INFO - Starting attempt 1 of 6
+[2024-04-23T21:22:41.203+0000] {taskinstance.py:2327} INFO - Executing <Task(PostgresOperator): insert_into_table> on 2024-04-22 00:00:00+00:00
+[2024-04-23T21:22:41.207+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'dag_with_postgres_operator_v02', 'insert_into_table', 'scheduled__2024-04-22T00:00:00+00:00', '--job-id', '423', '--raw', '--subdir', 'DAGS_FOLDER/dag_with_postgres_operator.py', '--cfg-path', '/tmp/tmpyg6dclqy']
+[2024-04-23T21:22:41.209+0000] {standard_task_runner.py:91} INFO - Job 423: Subtask insert_into_table
+[2024-04-23T21:22:41.208+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=4741) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-04-23T21:22:41.210+0000] {standard_task_runner.py:63} INFO - Started process 4742 to run task
+[2024-04-23T21:22:41.235+0000] {task_command.py:426} INFO - Running <TaskInstance: dag_with_postgres_operator_v02.insert_into_table scheduled__2024-04-22T00:00:00+00:00 [running]> on host e87e2f3305bd
+[2024-04-23T21:22:41.257+0000] {abstractoperator.py:725} ERROR - Exception rendering Jinja template for task 'insert_into_table', field 'sql'. Template: "\n            insert into dag_runs (dt, dag_id) values('{{  dt  }}','{{  dag.dag_id  }}')\n        "
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/abstractoperator.py", line 717, in _do_render_template_fields
+    rendered_content = self.render_template(
+                       ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/template/templater.py", line 169, in render_template
+    return self._render(template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/abstractoperator.py", line 675, in _render
+    return super()._render(template, context, dag=dag)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/template/templater.py", line 126, in _render
+    return render_template_to_string(template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/helpers.py", line 289, in render_template_to_string
+    return render_template(template, cast(MutableMapping[str, Any], context), native=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/helpers.py", line 284, in render_template
+    return "".join(nodes)
+           ^^^^^^^^^^^^^^
+  File "<template>", line 14, in root
+  File "/home/airflow/.local/lib/python3.12/site-packages/jinja2/runtime.py", line 852, in _fail_with_undefined_error
+    raise self._undefined_exception(self._undefined_message)
+jinja2.exceptions.UndefinedError: 'dt' is undefined
+[2024-04-23T21:22:41.258+0000] {taskinstance.py:2890} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 2476, in _run_raw_task
+    self._execute_task_with_callbacks(context, test_mode, session=session)
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 2629, in _execute_task_with_callbacks
+    task_orig = self.render_templates(context=context, jinja_env=jinja_env)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3079, in render_templates
+    original_task.render_template_fields(context, jinja_env)
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 1336, in render_template_fields
+    self._do_render_template_fields(self, self.template_fields, context, jinja_env, set())
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/abstractoperator.py", line 717, in _do_render_template_fields
+    rendered_content = self.render_template(
+                       ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/template/templater.py", line 169, in render_template
+    return self._render(template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/abstractoperator.py", line 675, in _render
+    return super()._render(template, context, dag=dag)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/template/templater.py", line 126, in _render
+    return render_template_to_string(template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/helpers.py", line 289, in render_template_to_string
+    return render_template(template, cast(MutableMapping[str, Any], context), native=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/helpers.py", line 284, in render_template
+    return "".join(nodes)
+           ^^^^^^^^^^^^^^
+  File "<template>", line 14, in root
+  File "/home/airflow/.local/lib/python3.12/site-packages/jinja2/runtime.py", line 852, in _fail_with_undefined_error
+    raise self._undefined_exception(self._undefined_message)
+jinja2.exceptions.UndefinedError: 'dt' is undefined
+[2024-04-23T21:22:41.263+0000] {taskinstance.py:1205} INFO - Marking task as UP_FOR_RETRY. dag_id=dag_with_postgres_operator_v02, task_id=insert_into_table, execution_date=20240422T000000, start_date=20240423T212241, end_date=20240423T212241
+[2024-04-23T21:22:41.267+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 423 for task insert_into_table ('dt' is undefined; 4742)
+[2024-04-23T21:22:41.309+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2024-04-23T21:22:41.320+0000] {taskinstance.py:3482} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-04-23T21:22:41.321+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2024-04-23T21:29:57.378+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-04-23T21:29:57.392+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dag_with_postgres_operator_v02.insert_into_table scheduled__2024-04-22T00:00:00+00:00 [queued]>
+[2024-04-23T21:29:57.396+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dag_with_postgres_operator_v02.insert_into_table scheduled__2024-04-22T00:00:00+00:00 [queued]>
+[2024-04-23T21:29:57.397+0000] {taskinstance.py:2303} INFO - Starting attempt 1 of 6
+[2024-04-23T21:29:57.402+0000] {taskinstance.py:2327} INFO - Executing <Task(PostgresOperator): insert_into_table> on 2024-04-22 00:00:00+00:00
+[2024-04-23T21:29:57.406+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'dag_with_postgres_operator_v02', 'insert_into_table', 'scheduled__2024-04-22T00:00:00+00:00', '--job-id', '429', '--raw', '--subdir', 'DAGS_FOLDER/dag_with_postgres_operator.py', '--cfg-path', '/tmp/tmpol07dumn']
+[2024-04-23T21:29:57.408+0000] {standard_task_runner.py:91} INFO - Job 429: Subtask insert_into_table
+[2024-04-23T21:29:57.407+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=5263) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-04-23T21:29:57.409+0000] {standard_task_runner.py:63} INFO - Started process 5265 to run task
+[2024-04-23T21:29:57.457+0000] {task_command.py:426} INFO - Running <TaskInstance: dag_with_postgres_operator_v02.insert_into_table scheduled__2024-04-22T00:00:00+00:00 [running]> on host e87e2f3305bd
+[2024-04-23T21:29:57.495+0000] {taskinstance.py:2644} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='julionevadod' AIRFLOW_CTX_DAG_ID='dag_with_postgres_operator_v02' AIRFLOW_CTX_TASK_ID='insert_into_table' AIRFLOW_CTX_EXECUTION_DATE='2024-04-22T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-04-22T00:00:00+00:00'
+[2024-04-23T21:29:57.496+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-04-23T21:29:57.503+0000] {sql.py:276} INFO - Executing: 
+            insert into dag_runs (dt, dag_id) values('2024-04-22','dag_with_postgres_operator_v02')
+        
+[2024-04-23T21:29:57.508+0000] {base.py:84} INFO - Using connection ID 'postgres_localhost' for task execution.
+[2024-04-23T21:29:57.514+0000] {base.py:84} INFO - Using connection ID 'postgres_localhost' for task execution.
+[2024-04-23T21:29:57.524+0000] {sql.py:457} INFO - Running statement: 
+            insert into dag_runs (dt, dag_id) values('2024-04-22','dag_with_postgres_operator_v02')
+        , parameters: None
+[2024-04-23T21:29:57.528+0000] {sql.py:466} INFO - Rows affected: 1
+[2024-04-23T21:29:57.532+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/providers/common/sql/hooks/sql.py:407 AirflowProviderDeprecationWarning: Call to deprecated method _make_common_data_structure. (The `_make_serializable` method is deprecated and support will be removed in a future version of the common.sql provider. Please update the DbApiHook's provider to a version based on common.sql >= 1.9.1.)
+[2024-04-23T21:29:57.533+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-04-23T21:29:57.538+0000] {taskinstance.py:1205} INFO - Marking task as SUCCESS. dag_id=dag_with_postgres_operator_v02, task_id=insert_into_table, execution_date=20240422T000000, start_date=20240423T212957, end_date=20240423T212957
+[2024-04-23T21:29:57.555+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-04-23T21:29:57.563+0000] {taskinstance.py:3482} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-04-23T21:29:57.564+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
